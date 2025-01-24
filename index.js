@@ -1,4 +1,5 @@
 // Task 1: Set up folders and move your files
+const { publicDecrypt } = require('crypto')
 const express = require('express')
 const app = express()
 
@@ -74,14 +75,18 @@ app.use((req, res, next) => {
 
 // Task 1: Set up the static middleware
 
-
+app.use(express.static(__dirname+"/public"))
 
 // Task 2: Set up the route handler for / to send back the index.html file
-
+app.get("/",(request,response)=>{
+  response.sendFile(__dirname+"public/index.html")
+})
 
 
 // Task 3: Set up the route handler for /mens which sends back category.ejs with the men's category object
-
+app.get("/mens",(request,response)=>{
+  response.render(__dirname+"/catagory.ejs")
+})
 
 
 // Task 4: Plug in the values in category.ejs to get the page working
@@ -91,7 +96,9 @@ app.use((req, res, next) => {
 
 // Task 5: Set up the route handler for /item/0 which sends back the first item in product.ejs
 
-
+app.get("/item/0",(request,response)=>{
+  res.render()
+})
 
 // Task 6: Plug in the values in product.ejs to get the page working
 // Extra credit: modify the /item/0 route handler to have dynamic path parameter and return any item's data

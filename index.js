@@ -65,7 +65,7 @@ const inventory = [
 ]
 
 // Task 1: Set the view engine to EJS. 
-
+app.set('view engine', 'ejs');
 
 
 app.use((req, res, next) => {
@@ -85,7 +85,8 @@ app.get("/",(request,response)=>{
 
 // Task 3: Set up the route handler for /mens which sends back category.ejs with the men's category object
 app.get("/mens",(request,response)=>{
-  response.render(__dirname+"/catagory.ejs")
+  const data = inventory[0]
+  response.render("category.ejs",data)
 })
 
 
@@ -97,7 +98,8 @@ app.get("/mens",(request,response)=>{
 // Task 5: Set up the route handler for /item/0 which sends back the first item in product.ejs
 
 app.get("/item/0",(request,response)=>{
-  res.render()
+  response.render("product.ejs",inventory[0].items[0])
+
 })
 
 // Task 6: Plug in the values in product.ejs to get the page working
